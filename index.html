@@ -75,14 +75,29 @@ big{
 <h1 id="firstHeading">首页-T3Q维基</h1>
 </div>
 <div id="baikediyi" style="background:linear-gradient(to bottom right, #0F0, #0F9); box-shadow:grey 0px 0px 5px; border-radius:20px; color: #000; font-size:1em; text-shadow:white 0px 0px 10px,white 0px 0px 10px;padding:10.865px;" ><b><big><big><big>T3Q维基</big></big></big></b>
-<p>揭露国漫圈黑幕的百科全书 本站共有<span class="fangwenliang">85</span>个页面
+<p>揭露国漫圈黑幕的百科全书 本站共有<span class="fangwenliang" id="page-count">0</span>个页面
 </span> &nbsp;
 <?php include 'count_pages.php'; ?>
 </p>
 </div>
 
 </div>
+    <script>
+        // 页面列表文件的URL
+        const pagesListUrl = 'generate-pages-json/pages.json';
 
+        // 从服务器获取页面列表文件
+        fetch(pagesListUrl)
+            .then(response => response.json())
+            .then(data => {
+                const pageCount = data.length; // 统计页面数量
+                document.getElementById("page-count").textContent = pageCount;
+            })
+            .catch(error => {
+                console.error('Error fetching pages list:', error);
+                document.getElementById("page-count").textContent = "未知";
+            });
+    </script>
 
 
 
