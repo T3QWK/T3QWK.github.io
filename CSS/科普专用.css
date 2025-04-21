@@ -1,0 +1,42 @@
+@charset "utf-8";
+h1{
+	font-size: 95px;
+}
+
+
+p{
+	font-size: 50px;
+}
+
+big{
+	font-size: 72px;
+}
+
+
+#wanzheng{
+	font-size: 50px;
+}
+
+#toc3{
+	font-size: 55px;
+}
+
+h2{
+	font-size:75px;
+}
+/* CSS Document */
+
+h3{
+	font-size:60px;
+}
+
+h4{
+	font-size:50px;
+}
+.lizhengchang {
+	font-size: 55px;
+}
+
+ul{
+	font-size: 50px;
+}
