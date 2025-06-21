@@ -62,6 +62,54 @@ big{
 
 
 
+
+
+
+
+
+
+   .scroll-container {
+            width: 100%;
+            height: 60px; /* 容器高度增大 */
+            background: #ffff99; /* 亮黄色背景 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            position: relative;
+            border-bottom: 2px solid ; /* 底部加深色边框 */
+        }
+        
+        /* 滚动文字样式：大字体 + 半透明白色背景 */
+        .scroll-text {
+            position: absolute;
+            height: 150%;
+            line-height: 60px; /* 垂直居中（与容器高度一致） */
+            font-size: 46px; /* 显著加大字体 */
+            font-weight: bold;
+            white-space: nowrap; /* 禁止换行 */
+            color: #333; /* 深色文字提高对比度 */
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* 文字描边增强可读性 */
+            animation: scroll 15s linear infinite; /* 滚动动画（速度可调） */
+            padding: 0 20px; /* 文字两侧留白 */
+            background: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
+        }
+
+        /* 关键帧动画：从右到左无缝循环 */
+        @keyframes scroll {
+            0% { 
+                transform: translateX(100vw); /* 从视口最右侧开始 */ 
+            }
+            100% { 
+                transform: translateX(-100%); /* 向左移出视口（确保文字完全消失） */
+            }
+        }
+
+.scroll-container:hover .scroll-text {
+    animation-play-state: paused;
+}
+
+
+
+
+
 </style>
 
 
@@ -88,30 +136,52 @@ big{
 <h1 id="firstHeading">首页-T3Q维基</h1>
 </div>
 <div id="baikediyi" style="background:linear-gradient(to bottom right, #0F0, #0F9); box-shadow:grey 0px 0px 5px; border-radius:20px; color: #000; font-size:1em; text-shadow:white 0px 0px 10px,white 0px 0px 10px;padding:10.865px;" ><b><big><big><big>T3Q维基</big></big></big></b>
-<p>揭露国漫圈黑幕的百科全书 本站共有<span class="fangwenliang" id="page-count"></span>个页面
-</span> &nbsp;
-<?php include 'count_pages.php'; ?>
-</p>
+<p>
+        揭露国漫圈黑幕的百科全书 本站共有<span class="fangwenliang" id="page-count"></span>个页面
+    </p>
 </div>
 
-</div>
 <script>
-        // 页面列表文件的URL
-        const pagesListUrl = 'generate-pages-json/pages.json';
 
-        // 从服务器获取页面列表文件
-        fetch(pagesListUrl)
-            .then(response => response.json())
-            .then(data => {
-                const pageCount = data.length; // 统计页面数量
-                document.getElementById("page-count").textContent = pageCount;
-            })
-            .catch(error => {
-                console.error('Error fetching pages list:', error);
-                document.getElementById("page-count").textContent = "未知";
-            });
+    // 使用正确的 JSON 文件路径
+    const pagesListUrl = 'generate-pages-json/pages.json';
+
+    // 从服务器获取页面列表文件
+    fetch(pagesListUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 确保数据格式正确
+            let pageCount;
+            if (Array.isArray(data)) {
+                pageCount = data.length;
+            } else if (typeof data === 'object' && data.count !== undefined) {
+                pageCount = data.count;
+            } else {
+                throw new Error('Unexpected data format in pages.json');
+            }
+            
+            document.getElementById("page-count").textContent = pageCount;
+        })
+        .catch(error => {
+            console.error('Error fetching pages list:', error);
+            document.getElementById("page-count").textContent = "未知";
+        });
+		
+
 </script>
 
+
+    <div class="scroll-container">
+        <div class="scroll-text">
+            月报更新：1.<a href="腐朽分支/狗窝·熊出没吧.html">熊出没吧</a>的百科      2.恶俗主播<a href="人物/人物·柳成儒.html">柳成儒</a>再次爆典       3.全新分类<a href="人物/人物·词条合集.html">【炸吧分子】</a>
+        </div>
+    </div>
+    
 
 
 <table style="background-color:#f5faff; box-shadow:grey 0px 0px 5px; width:100%; margin-top:0em; margin-left:auto; margin-right:auto; border:1px solid #999; border-radius:20px; text-align:center; list-style-type:square;padding-bottom:10px;">
@@ -617,7 +687,7 @@ big{
   
 
     <tr>
-      <td><div id="wanzheng" align="center"><a href="此页面目前没有内容.html" id="wanzheng2">熊出没吧</a></div></td>
+      <td><div id="wanzheng" align="center"><a href="腐朽分支/狗窝·熊出没吧.html" >熊出没吧</a></div></td>
       <td><div id="wanzheng" align="center"><a href="此页面目前没有内容.html" id="wanzheng2">开心超人吧</a></div></td>
       <td><div id="wanzheng" align="center"><a href="此页面目前没有内容.html" id="wanzheng2">京剧猫吧</a></div></td>
       <td><div id="wanzheng" align="center"><a href="此页面目前没有内容.html" id="wanzheng2">猪猪侠吧</a></div></td>
