@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 
 <title>T3Q维基</title>
+<!-- 调整视口设置：允许用户缩放 -->
+<meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
-<style>
+<style scoped lang="scss">
 #box{
 	/* [disabled]margin:auto; */	
 }
@@ -68,7 +70,7 @@ big{
 
 
 
-   .scroll-container {
+   #scroll-container {
             width: 100%;
             height: 160px; /* 容器高度增大 */
             background: #ffff99; /* 亮黄色背景 */
@@ -78,7 +80,7 @@ big{
         }
         
         /* 滚动文字样式：大字体 + 半透明白色背景 */
-        .scroll-text {
+        #scroll-text {
             position: absolute;
             height: 150%;
             line-height: 60px; /* 垂直居中（与容器高度一致） */
@@ -90,7 +92,8 @@ big{
             animation: scroll 15s linear infinite; /* 滚动动画（速度可调） */
             padding: 0 20px; /* 文字两侧留白 */
             background: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
-        }
+        	
+		}
 
         /* 关键帧动画：从右到左无缝循环 */
         @keyframes scroll {
@@ -104,11 +107,22 @@ big{
 
 .scroll-container:hover .scroll-text {
     animation-play-state: paused;
+
 }
 
 
+/* 移动端样式 */
+.announcement { height: auto; }
+/* 平板及以上 */
+@media (min-width: 768px) {
+  .announcement { height: 200px; overflow-y: scroll; }
+}
 
 
+.scroll-container {
+  -webkit-overflow-scrolling: touch; /* 优化移动端滚动 */
+  overflow-y: auto;
+}
 
 
 </style>
@@ -126,6 +140,9 @@ big{
 
   gtag('config', 'G-ZSER4Q5GEL');
 </script>
+
+
+
 </head>
 
 <body>
@@ -178,10 +195,10 @@ big{
 </script>
 
 
-    <div class="scroll-container">
-        <div class="scroll-text">
+    <div id="scroll-container">
+        <div id="scroll-text">
             <p>月报更新：1.<a href="腐朽分支/狗窝·熊出没吧.html">熊出没吧</a>的百科      2.恶俗主播<a href="人物/人物·柳成儒.html">柳成儒</a>再次爆典       3.全新分类<a href="人物/人物·词条合集.html">【炸吧分子】</a>
-        </p></div>
+        4.修复移动端显示bug 5.修复其他已知bug</p></div>
     </div>
     
 
