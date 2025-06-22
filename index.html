@@ -79,35 +79,46 @@ big{
             border-bottom: 2px solid ; /* 底部加深色边框 */
         }
         
-        /* 滚动文字样式：大字体 + 半透明白色背景 */
-        #scroll-text {
-            position: absolute;
-            height: 150%;
-            line-height: 60px; /* 垂直居中（与容器高度一致） */
-            font-size: 46px; /* 显著加大字体 */
-            font-weight: bold;
-            white-space: nowrap; /* 禁止换行 */
-            color: #333; /* 深色文字提高对比度 */
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* 文字描边增强可读性 */
-            animation: scroll 15s linear infinite; /* 滚动动画（速度可调） */
-            padding: 0 20px; /* 文字两侧留白 */
-            background: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
-        	
-		}
+<style>
+#scroll-container {
+    width: 100%;
+    height: 160px;
+    background: #ffff99;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 2px solid #333;
+}
 
-        /* 关键帧动画：从右到左无缝循环 */
-        @keyframes scroll {
-            0% { 
-                transform: translateX(100vw); /* 从视口最右侧开始 */ 
-            }
-            100% { 
-                transform: translateX(-100%); /* 向左移出视口（确保文字完全消失） */
-            }
-        }
+#scroll-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex; /* 并排排列两个文本 */
+    white-space: nowrap;
+    animation: scroll 10s linear infinite;
+}
 
-.scroll-container:hover .scroll-text {
+.scroll-text {
+    height: 100%;
+    line-height: 60px;
+    font-size: 46px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    padding: 0 60px;
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center; /* 垂直居中 */
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); } /* 移动一个文本的宽度 */
+}
+
+#scroll-container:hover #scroll-wrapper {
     animation-play-state: paused;
-
 }
 
 
@@ -210,13 +221,15 @@ big{
 </script>
 
 
-    <div id="scroll-container">
-        <div id="scroll-text">
-            <p>月报更新：1.<a href="腐朽分支/狗窝·熊出没吧.html">熊出没吧</a>的百科      2.恶俗主播<a href="人物/人物·柳成儒.html">柳成儒</a>再次爆典       3.全新分类<a href="人物/人物·词条合集.html">【炸吧分子】</a>
-        4.修复移动端显示bug 5.修复其他已知bug</p></div>
-    </div>
-    
 
+<div id="scroll-container">
+    <div id="scroll-wrapper"> <!-- 新增包裹容器 -->
+        <div class="scroll-text"><p>月报更新：1.<a href="腐朽分支/狗窝·熊出没吧.html">熊出没吧</a>的百科      2.恶俗主播<a href="人物/人物·柳成儒.html">柳成儒</a>再次爆典       3.全新分类<a href="人物/人物·词条合集.html">【炸吧分子】</a>
+        4.修复移动端显示bug 5.修复其他已知bug</p></div>
+        <div class="scroll-text"><p>月报更新：1.<a href="腐朽分支/狗窝·熊出没吧.html">熊出没吧</a>的百科      2.恶俗主播<a href="人物/人物·柳成儒.html">柳成儒</a>再次爆典       3.全新分类<a href="人物/人物·词条合集.html">【炸吧分子】</a>
+        4.修复移动端显示bug 5.修复其他已知bug</p></div> <!-- 重复文本 -->
+    </div>
+</div>
 
 <table style="background-color:#f5faff; box-shadow:grey 0px 0px 5px; width:100%; margin-top:0em; margin-left:auto; margin-right:auto; border:1px solid #999; border-radius:20px; text-align:center; list-style-type:square;padding-bottom:10px;">
 <tbody><tr>
