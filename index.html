@@ -125,7 +125,63 @@ big{
 }
 
 
+
+
+
+/* 所有设备通用样式 */
+.scroll-container {
+  overflow-x: auto;
+}
+
+/* 仅移动端生效的样式 */
+@media (hover: none) and (pointer: coarse) {
+  .scroll-container {
+    -webkit-overflow-scrolling: touch; /* 修复iOS滚动卡顿 */
+    scrollbar-width: none; /* 隐藏默认滚动条 */
+  }
+  /* 表格横向滚动 */
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+
+
+
+
+
+
+
 </style>
+
+
+<script>
+  // 检测移动设备并动态设置viewport
+  if (/Android|iPhone|iPad/.test(navigator.userAgent)) {
+    const viewport = document.createElement('meta');
+    viewport.name = "viewport";
+    // 安卓设备优先用device-width，iOS用固定宽度
+    const isAndroid = /Android/.test(navigator.userAgent);
+    viewport.content = isAndroid 
+      ? "width=device-width, initial-scale=1.0, maximum-scale=5.0" 
+      : "width=1200, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes";
+    document.head.appendChild(viewport);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
