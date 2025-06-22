@@ -111,40 +111,6 @@ big{
 }
 
 
-/* 移动端样式 */
-.announcement { height: auto; }
-/* 平板及以上 */
-@media (min-width: 768px) {
-  .announcement { height: 200px; overflow-y: scroll; }
-}
-
-
-.scroll-container {
-  -webkit-overflow-scrolling: touch; /* 优化移动端滚动 */
-  overflow-y: auto;
-}
-
-
-
-
-
-/* 所有设备通用样式 */
-.scroll-container {
-  overflow-x: auto;
-}
-
-/* 仅移动端生效的样式 */
-@media (hover: none) and (pointer: coarse) {
-  .scroll-container {
-    -webkit-overflow-scrolling: touch; /* 修复iOS滚动卡顿 */
-    scrollbar-width: none; /* 隐藏默认滚动条 */
-  }
-  /* 表格横向滚动 */
-  table {
-    display: block;
-    overflow-x: auto;
-  }
-}
 
 
 
