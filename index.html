@@ -111,30 +111,23 @@ big{
 }
 
 
+/* 移动端样式 */
+.announcement { height: auto; }
+/* 平板及以上 */
+@media (min-width: 768px) {
+  .announcement { height: 200px; overflow-y: scroll; }
+}
 
 
-
-
-
-
+.scroll-container {
+  -webkit-overflow-scrolling: touch; /* 优化移动端滚动 */
+  overflow-y: auto;
+}
 
 
 </style>
 
 
-<script>
-  // 检测移动设备并动态设置viewport
-  if (/Android|iPhone|iPad/.test(navigator.userAgent)) {
-    const viewport = document.createElement('meta');
-    viewport.name = "viewport";
-    // 安卓设备优先用device-width，iOS用固定宽度
-    const isAndroid = /Android/.test(navigator.userAgent);
-    viewport.content = isAndroid 
-      ? "width=device-width, initial-scale=1.0, maximum-scale=5.0" 
-      : "width=1200, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes";
-    document.head.appendChild(viewport);
-  }
-</script>
 
 
 
